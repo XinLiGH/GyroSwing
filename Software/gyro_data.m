@@ -13,9 +13,9 @@ gyro_x_minus_zero = gyro_x(:, 3) - gyro_x_zero;   %陀螺仪数据减去零偏
 gyro_y_minus_zero = gyro_y(:, 4) - gyro_y_zero;
 gyro_z_minus_zero = gyro_z(:, 5) - gyro_z_zero;
 
-gyro_x_angle = cumtrapz(gyro_x_minus_zero) / 200; %陀螺仪数据阶梯积分求角度
-gyro_y_angle = cumtrapz(gyro_y_minus_zero) / 200;
-gyro_z_angle = cumtrapz(gyro_z_minus_zero) / 200;
+gyro_x_angle = cumsum(gyro_x_minus_zero) / 200;   %陀螺仪数据积分求角度
+gyro_y_angle = cumsum(gyro_y_minus_zero) / 200;
+gyro_z_angle = cumsum(gyro_z_minus_zero) / 200;
 
 gyro_x_time = (1:length(gyro_x_angle)) / 200;     %求陀螺仪数据的时间
 gyro_y_time = (1:length(gyro_y_angle)) / 200;
